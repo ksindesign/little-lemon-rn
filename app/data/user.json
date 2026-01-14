@@ -1,7 +1,8 @@
 {
   "name": {
     "firstName": "Karie",
-    "lastName": "Sin"
+    "lastName": "Sin",
+    "phoneNumber": "1234567890"
   },
   "email": "ks@gmail.com"
 }

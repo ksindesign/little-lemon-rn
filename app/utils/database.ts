@@ -5,6 +5,7 @@ export type UserData = {
   lastName: string;
   email: string;
   profilePic?: string | null;
+  phoneNumber?: string | null;
 };
 
 export type MenuItem = {

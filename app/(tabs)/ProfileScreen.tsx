@@ -10,6 +10,7 @@ export default function ProfileScreen() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -28,6 +29,7 @@ export default function ProfileScreen() {
         setFirstName(userData.firstName);
         setLastName(userData.lastName);
         setEmail(userData.email);
+        setPhoneNumber(userData.phoneNumber);
         setImage(userData.profilePic || null);
       } else {
         // No user data found, redirect to onboarding
@@ -165,6 +167,17 @@ export default function ProfileScreen() {
           keyboardType='email-address'
           value={email}
           onChangeText={setEmail}
+          style={styles.input}
+          mode='outlined'
+          textColor='#495E57'
+        />
+        <Text style={{ color: '#495E57' }}>Phone Number</Text>
+        <TextInput
+          placeholder='Phone Number'
+          autoCapitalize='none'
+          keyboardType='phone-pad'
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
           style={styles.input}
           mode='outlined'
           textColor='#495E57'
