@@ -60,7 +60,7 @@ export default function MenuFilter({
 
 const styles = StyleSheet.create({
   filterText: {
-    fontSize: 24,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#495E57',
     marginBottom: 10,

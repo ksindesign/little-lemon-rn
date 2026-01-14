@@ -21,7 +21,7 @@ export default function Index() {
 
       if (userData) {
         // User is onboarded, go to Home tab
-        router.replace('/(tabs)/HomeScreen');
+        router.replace('/(tabs)');
       } else {
         // User is not onboarded, go to Onboarding
         router.replace('/OnboardingScreen');

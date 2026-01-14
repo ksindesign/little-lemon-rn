@@ -1,37 +1,22 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Tabs, useRouter } from 'expo-router';
+import { IconButton } from 'react-native-paper';
 
 export default function TabsLayout() {
   const router = useRouter();
 
-  function handleBackButton() {
-    router.back();
-  }
-
   return (
-    <Tabs
-      screenOptions={{
-        headerStyle: { backgroundColor: '#fff' },
-        headerShadowVisible: false,
-        headerTitleStyle: { color: '#495E57' },
-        tabBarStyle: {
-          backgroundColor: '#f5f5f5',
-          borderTopWidth: 0,
-          elevation: 0,
-          shadowOpacity: 0,
-        },
-
-        tabBarActiveTintColor: '#495E57',
-        tabBarInactiveTintColor: '#666666',
-      }}
-    >
+    <Tabs>
       <Tabs.Screen
-        name='HomeScreen'
+        name='index'
         options={{
           title: 'Home',
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name='home' size={size} color={color} />
           ),
+          tabBarAccessibilityLabel: 'Home',
+          tabBarActiveTintColor: '#495E57',
         }}
       />
       <Tabs.Screen
@@ -41,15 +26,16 @@ export default function TabsLayout() {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name='account' size={size} color={color} />
           ),
+          tabBarAccessibilityLabel: 'Profile',
           headerLeft: () => (
-            <MaterialCommunityIcons
-              name='arrow-left'
+            <IconButton
+              icon='arrow-left'
               size={24}
-              color='#495E57'
-              onPress={handleBackButton}
-              style={{ marginLeft: 16 }}
+              iconColor='#495E57'
+              onPress={() => router.back()}
             />
           ),
+          tabBarActiveTintColor: '#495E57',
         }}
       />
     </Tabs>

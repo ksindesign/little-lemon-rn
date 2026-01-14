@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import MenuFilter from '../components/MenuFilter';
 import Searchbar from '../components/Searchbar';
 import menuCategoryData from '../data/menuCategory.json';
@@ -75,10 +76,7 @@ export default function HomeScreen() {
 
   const handleFilter = useCallback(async () => {
     try {
-      const filteredItems = await filterMenuItems(
-        selectedCategories,
-        searchQuery
-      );
+      const filteredItems = await filterMenuItems(selectedCategories);
       setMenuItems(filteredItems);
     } catch (error) {
       console.error('Error filtering menu items:', error);
@@ -165,21 +163,28 @@ export default function HomeScreen() {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
+      <View style={styles.headerTop}>
+        <Image
+          source={require('../../assets/images/Logo.png')}
+          style={styles.logo}
+        />
+
+        <Link href='/(tabs)/ProfileScreen' asChild>
+          <TouchableOpacity style={styles.profileButton}>
+            <Image
+              source={profilePic ? { uri: profilePic } : defaultProfilePic}
+              style={styles.profileImage}
+            />
+          </TouchableOpacity>
+        </Link>
+      </View>
       <View style={styles.header}>
-        <View style={styles.headerTop}>
+        <View>
           <View>
             <Text style={styles.headerTitle}>Little Lemon</Text>
             <Text style={styles.headerSubtitle}>Chicago</Text>
           </View>
-          <Link href='/(tabs)/ProfileScreen' asChild>
-            <TouchableOpacity style={styles.profileButton}>
-              <Image
-                source={profilePic ? { uri: profilePic } : defaultProfilePic}
-                style={styles.profileImage}
-              />
-            </TouchableOpacity>
-          </Link>
         </View>
         <View style={styles.headerHero}>
           <View style={styles.heroContent}>
@@ -210,7 +215,7 @@ export default function HomeScreen() {
         contentContainerStyle={styles.listContainer}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -233,13 +238,21 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#495E57',
     padding: 20,
-    paddingTop: 40,
+    paddingTop: 20, // Reduced because of SafeAreaView
   },
   headerTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 15,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: 10,
+    paddingVertical: 10,
+  },
+  logo: {
+    height: 40,
+    width: 200,
+    transform: [{ translateX: -10 }],
+    resizeMode: 'contain',
   },
   headerHero: {
     flexDirection: 'row',

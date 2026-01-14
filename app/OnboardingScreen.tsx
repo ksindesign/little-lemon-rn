@@ -46,7 +46,7 @@ export default function OnboardingScreen() {
       Alert.alert('Success', 'Your profile has been saved!', [
         {
           text: 'OK',
-          onPress: () => router.replace('/(tabs)/HomeScreen'),
+          onPress: () => router.replace('/(tabs)'),
         },
       ]);
     } catch (error) {

@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, View } from 'react-native';
-import { ActivityIndicator, Button, TextInput } from 'react-native-paper';
+import { ActivityIndicator, Button, Text, TextInput } from 'react-native-paper';
 import ImagePickerComponent from '../components/ImagePicker';
 import { clearUserData, getUserData, saveUserData } from '../utils/database';
 
@@ -129,6 +129,7 @@ export default function ProfileScreen() {
           loading={isSaving}
           disabled={isSaving}
           buttonColor='#495E57'
+          textColor='#fff'
         >
           Save
         </Button>
@@ -137,33 +138,36 @@ export default function ProfileScreen() {
       <ImagePickerComponent image={image} onImageChange={setImage} />
 
       <View style={styles.formContainer}>
+        <Text style={{ color: '#495E57' }}>First Name</Text>
         <TextInput
           placeholder='First Name'
-          label='First Name'
           autoCapitalize='words'
           value={firstName}
           onChangeText={setFirstName}
-          style={styles.input}
+          style={{ ...styles.input }}
           mode='outlined'
+          textColor='#495E57'
         />
+        <Text style={{ color: '#495E57' }}>Last Name</Text>
         <TextInput
           placeholder='Last Name'
-          label='Last Name'
           autoCapitalize='words'
           value={lastName}
           onChangeText={setLastName}
           style={styles.input}
           mode='outlined'
+          textColor='#495E57'
         />
+        <Text style={{ color: '#495E57' }}>Email</Text>
         <TextInput
           placeholder='Email'
-          label='Email'
           autoCapitalize='none'
           keyboardType='email-address'
           value={email}
           onChangeText={setEmail}
           style={styles.input}
           mode='outlined'
+          textColor='#495E57'
         />
       </View>
     </ScrollView>
@@ -191,6 +195,10 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 15,
+    backgroundColor: 'transparent',
+    color: '#495E57',
+    height: 40,
+    fontSize: 16,
   },
   profilePic: {
     width: 100,
